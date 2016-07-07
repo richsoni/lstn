@@ -14,17 +14,17 @@ RSpec.describe 'Music' do
     let(:off){"mpd error: Connection refused"}
 
     it 'takes command line echos' do
-      output = `echo "#{playing}" | ./music`
+      output = `echo "#{playing}" | PIPING=y ./music`
       expect(output).to(eq("Neil Young - Lookin' For A Love\n"))
     end
 
     it 'does not print for paused' do
-      output = `echo "#{paused} | ./music`
+      output = `echo "#{paused} | PIPING=y ./music`
       expect(output).to(eq(""))
     end
 
     it 'does not print if mpd is off' do
-      output = `echo "#{off} | ./music`
+      output = `echo "#{off} | PIPING=y ./music`
       expect(output).to(eq(""))
     end
   end
@@ -55,12 +55,12 @@ RSpec.describe 'Music' do
     ].join("\n")}
 
     it 'takes command line echos' do
-      output = `echo "#{playing}" | ./music`
+      output = `echo "#{playing}" | PIPING=y ./music`
       expect(output).to(eq("Gil Scott-Heron - Whitey on the Moon\n"))
     end
 
     it 'does not print for paused' do
-      output = `echo "#{paused} | ./music`
+      output = `echo "#{paused} | PIPING=y ./music`
       expect(output).to(eq(""))
     end
   end

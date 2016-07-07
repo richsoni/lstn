@@ -3,7 +3,7 @@ require 'pry'
 
 class IncomingData
   def self.get
-    if $stdin.tty?
+    if !ENV["PIPING"]
       get_from_commands
     else
       #this is for shimming in fixtures
