@@ -31,39 +31,15 @@ RSpec.describe 'Lstn' do
     end
   end
 
-  describe 'spotify' do
-    let(:paused) {[ "Current track:",
-      "Artist:   Gil Scott-Heron",
-      "Track:    Whitey on the Moon",
-      "Album:    The Revolution Begins: The Flying Dutchman Masters",
-      "URI:      spotify:track:2355UaWJqfhsnstzsLT49h",
-      "Duration: 1min 59s (119 seconds)",
-      "Now at:   1min 37s",
-      "Player:   paused",
-      "Volume:   87",
-      "Repeat is on.",
-    ].join("\n")}
-
-    let(:playing) {[ "Current track:",
-      "Artist:   Gil Scott-Heron",
-      "Track:    Whitey on the Moon",
-      "Album:    The Revolution Begins: The Flying Dutchman Masters",
-      "URI:      spotify:track:2355UaWJqfhsnstzsLT49h",
-      "Duration: 1min 59s (119 seconds)",
-      "Now at:   1min 37s",
-      "Player:   playing",
-      "Volume:   87",
-      "Repeat is on.",
+  describe 'Basic App' do
+    let(:playing) {[
+      "Rich Soni - Fly Away",
+      "[playing]",
     ].join("\n")}
 
     it 'takes command line echos' do
       output = `echo "#{playing}" | #{COMMAND}`
-      expect(output).to(eq("Gil Scott-Heron - Whitey on the Moon\n"))
-    end
-
-    it 'does not print for paused' do
-      output = `echo "#{paused} | #{COMMAND}`
-      expect(output).to(eq(""))
+      expect(output).to(eq("Rich Soni - Fly Away\n"))
     end
   end
 

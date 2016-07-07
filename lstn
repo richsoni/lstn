@@ -20,8 +20,24 @@ class IncomingData
     return @incoming_data
   end
 
+  def self.app_script(application)
+    ['on run argv',
+      "tell application \"#{application}\"",
+        'set myTrack to name of current track',
+        'set myArtist to artist of current track',
+        'set info to myArtist & " - " & myTrack & "\\n"',
+        'set info to info & "[" & player state & "]"',
+        'return info',
+      'end tell',
+    'end run'].map {|x| " -e '#{x}'"}.join("")
+  end
+
   def self.spotify
-    @spotify ||= `spotify info`
+    @spotify ||= `osascript #{app_script("Spotify")}`
+  end
+
+  def self.itunes
+    @itunes ||= `osascript #{app_script("iTunes")}`
   end
 
   def self.mpc
@@ -30,6 +46,7 @@ class IncomingData
 
   def self.get_from_commands
     return mpc if mpc.match(/playing/)
+    return itunes if itunes.match(/playing/)
     return spotify if spotify.match(/playing/)
     return ""
   end
