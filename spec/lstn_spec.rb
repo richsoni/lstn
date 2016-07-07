@@ -1,7 +1,9 @@
 require 'spec_helper'
 require 'pry'
 
-RSpec.describe 'Music' do
+COMMAND="PIPING=y ./lstn"
+
+RSpec.describe 'Lstn' do
   describe 'mpc' do
     let(:paused){["Neil Young - Lookin' For A Love",
     "[paused] #12/17   0:45/3:16 (22%)",
@@ -14,17 +16,17 @@ RSpec.describe 'Music' do
     let(:off){"mpd error: Connection refused"}
 
     it 'takes command line echos' do
-      output = `echo "#{playing}" | PIPING=y ./music`
+      output = `echo "#{playing}" | #{COMMAND}`
       expect(output).to(eq("Neil Young - Lookin' For A Love\n"))
     end
 
     it 'does not print for paused' do
-      output = `echo "#{paused} | PIPING=y ./music`
+      output = `echo "#{paused} | #{COMMAND}`
       expect(output).to(eq(""))
     end
 
     it 'does not print if mpd is off' do
-      output = `echo "#{off} | PIPING=y ./music`
+      output = `echo "#{off} | #{COMMAND}`
       expect(output).to(eq(""))
     end
   end
@@ -55,12 +57,12 @@ RSpec.describe 'Music' do
     ].join("\n")}
 
     it 'takes command line echos' do
-      output = `echo "#{playing}" | PIPING=y ./music`
+      output = `echo "#{playing}" | #{COMMAND}`
       expect(output).to(eq("Gil Scott-Heron - Whitey on the Moon\n"))
     end
 
     it 'does not print for paused' do
-      output = `echo "#{paused} | PIPING=y ./music`
+      output = `echo "#{paused} | #{COMMAND}`
       expect(output).to(eq(""))
     end
   end
