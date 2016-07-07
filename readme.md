@@ -1,5 +1,5 @@
 #lstn
-## lil' song terminal notification
+*Lil' Song Terminal Notification*
 
 # Installation
 
