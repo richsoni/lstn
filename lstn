@@ -45,8 +45,8 @@ class IncomingData
   end
 
   def self.get_from_commands
-    return mpc if mpc.match(/playing/)
-    return itunes if itunes.match(/playing/)
+    return mpc     if mpc.match(/playing/)
+    return itunes  if itunes.match(/playing/)
     return spotify if spotify.match(/playing/)
     return ""
   end
@@ -68,8 +68,4 @@ def spotify_data_at_line(num)
   line(num).split(":").last.strip
 end
 
-if line(0).strip == "Current track:"
- puts "#{spotify_data_at_line(1)} - #{spotify_data_at_line(2)}"
-else
- puts line(0) if line(0) != ""
-end
+puts line(0) if line(0) != ""
