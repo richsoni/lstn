@@ -1,4 +1,4 @@
-#LSTN: Lil' Song Terminal Notification
+#LSTN: Lil' Song Terminal/Tmux Notification
 
 # Installation
 
