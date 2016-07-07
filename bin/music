@@ -1,6 +1,0 @@
-#!/usr/bin/env ruby
-
-require('./lib/frontend')
-
-output =  Frontend.print
-puts output if output != ""

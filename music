@@ -1,0 +1,58 @@
+#!/usr/bin/env ruby -W0
+require 'pry'
+
+class IncomingData
+  def self.get
+    if $stdin.tty?
+      get_from_commands
+    else
+      #this is for shimming in fixtures
+      get_from_pipe
+    end
+  end
+
+  def self.get_from_pipe
+    return @incoming_data if @incoming_data
+    @incoming_data = ""
+    while x= gets
+      @incoming_data = "#{@incoming_data}#{x}"
+    end
+    return @incoming_data
+  end
+
+  def self.spotify
+    @spotify ||= `spotify info`
+  end
+
+  def self.mpc
+    @mpc ||= `mpc`
+  end
+
+  def self.get_from_commands
+    return mpc if mpc.match(/playing/)
+    return spotify if spotify.match(/playing/)
+    return ""
+  end
+end
+
+def incoming_data
+  IncomingData.get
+end
+
+def lines
+  incoming_data.split("\n") || []
+end
+
+def line(num)
+  lines[num] || ""
+end
+
+def spotify_data_at_line(num)
+  line(num).split(":").last.strip
+end
+
+if line(0).strip == "Current track:"
+ puts "#{spotify_data_at_line(1)} - #{spotify_data_at_line(2)}"
+else
+ puts line(0) if line(0) != ""
+end
