@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/backend'
+require_relative '../../lib/backend'
 require 'pry'
 
 RSpec.describe 'Backend' do

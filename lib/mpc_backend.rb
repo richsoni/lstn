@@ -1,4 +1,4 @@
-require 'backend'
+require_relative 'backend'
 class MpcBackend < Backend
 
   def artist
@@ -14,7 +14,7 @@ class MpcBackend < Backend
   end
 
   def self.fetch_data
-    `mpc`
+    `mpc 2> /dev/null`
   end
 
 end

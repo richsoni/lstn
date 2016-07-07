@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/spotify_backend'
+require_relative '../../lib/spotify_backend'
 require 'pry'
 
 

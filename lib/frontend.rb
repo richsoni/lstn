@@ -1,5 +1,5 @@
-require './lib/mpc_backend'
-require './lib/spotify_backend'
+require_relative 'mpc_backend'
+require_relative 'spotify_backend'
 
 class Frontend
   def mpc
@@ -24,5 +24,14 @@ class Frontend
 
   def self.get_state
     self.new.get_state
+  end
+
+  def print
+    return "" unless backend[:state]
+    "#{backend[:artist]} - #{backend[:title]}"
+  end
+
+  def self.print
+    self.new.print
   end
 end

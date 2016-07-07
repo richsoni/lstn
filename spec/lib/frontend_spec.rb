@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/frontend'
+require_relative '../../lib/frontend'
 require 'pry'
 
 RSpec.describe 'Frontend' do
@@ -20,10 +20,21 @@ RSpec.describe 'Frontend' do
   ].join("\n")}
 
   let(:state) { Frontend.get_state }
+  let(:print) { Frontend.print }
 
   it 'gets formatted info from MPC Backend' do
     allow(MpcBackend).to(receive(:fetch_data)).and_return(mpd_data)
     expect(state[:artist]).to(eq("Neil Young"))
+  end
+
+  it "prints nothing if there is nothing" do
+    allow(MpcBackend).to(receive(:fetch_data)).and_return("")
+    expect(print).to(eq(""))
+  end
+
+  it "prints if there is something" do
+    allow(MpcBackend).to(receive(:fetch_data)).and_return(mpd_data)
+    expect(print).to(eq("Neil Young - Lookin' For A Love"))
   end
 
   it 'gets formatted info from SpotifyBackend' do

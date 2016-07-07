@@ -1,4 +1,4 @@
-require 'backend'
+require_relative 'backend'
 class SpotifyBackend < Backend
 
   def tail(line)
@@ -18,7 +18,7 @@ class SpotifyBackend < Backend
   end
 
   def self.fetch_data
-    `spotify info`
+    `spotify info 2> /dev/null`
   end
 end
 

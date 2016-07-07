@@ -1,5 +1,5 @@
 require 'spec_helper'
-require './lib/mpc_backend'
+require_relative '../../lib/mpc_backend'
 require 'pry'
 
 RSpec.describe 'MpcBackend' do
