@@ -10,7 +10,7 @@ $ chmod +x ~/bin/lstn
 # Requirements
 
 * mpc, for displaying mpd status
-* (SpotifyControl)[https://github.com/dronir/SpotifyControl] for Spotify Status (future releases may include this feature out of the box)
+* [SpotifyControl](https://github.com/dronir/SpotifyControl) for Spotify Status (future releases may include this feature out of the box)
 * ruby
 
 # Usage
