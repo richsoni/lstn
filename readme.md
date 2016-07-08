@@ -10,13 +10,12 @@ $ chmod +x ~/bin/lstn
 # Requirements
 
 * mpc, for displaying mpd status
-* [SpotifyControl](https://github.com/dronir/SpotifyControl) for Spotify Status (future releases may include this feature out of the box)
 * ruby
 
 # Usage
 ## Basic
 
-Just run the script, and it will show Artist - Song playing in Spotify or MPD.
+Just run the script, and it will show Artist - Song playing in Spotify, iTunes, or MPD.
 
 ```
 $ lstn
