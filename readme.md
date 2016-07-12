@@ -11,6 +11,7 @@ $ chmod +x ~/bin/lstn
 
 * mpc, for displaying mpd status
 * ruby
+* OS X
 
 # Usage
 ## Basic
