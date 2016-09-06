@@ -21,6 +21,12 @@ Just run the script, and it will show Artist - Song playing in Spotify, iTunes, 
 ```
 $ lstn
 Neil Young - Drive Back
+
+$ lstn artist
+Neil Young
+
+$ lstn song
+Drive Back
 ```
 
 ## Tmux Banner
