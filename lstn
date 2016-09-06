@@ -21,13 +21,15 @@ class IncomingData
 
   def self.app_script(application)
     ['on run argv',
-      "tell application \"#{application}\"",
-        'set myTrack to name of current track',
-        'set myArtist to artist of current track',
-        'set info to myArtist & " - " & myTrack & "\\n"',
-        'set info to info & "[" & player state & "]"',
-        'return info',
-      'end tell',
+     "if application \"#{application}\" is running then",
+        "tell application \"#{application}\"",
+          'set myTrack to name of current track',
+          'set myArtist to artist of current track',
+          'set info to myArtist & " - " & myTrack & "\\n"',
+          'set info to info & "[" & player state & "]"',
+          'return info',
+        'end tell',
+      "end if",
     'end run'].map {|x| " -e '#{x}'"}.join("")
   end
 
@@ -67,4 +69,12 @@ def spotify_data_at_line(num)
   line(num).split(":").last.strip
 end
 
-puts line(0) if line(0) != ""
+if line(0) != ""
+  if ARGV[0] == "artist"
+    puts line(0).split("-")[0].strip
+  elsif ARGV[0] == "song"
+    puts line(0).split("-")[1].strip
+  else
+    puts line(0) if line(0) != ""
+  end
+end
